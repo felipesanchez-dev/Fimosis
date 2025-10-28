@@ -72,8 +72,8 @@
         <td>${s.grade ?? ""}</td>
         <td>${s.status ?? ""}</td>
         <td>
-          <button class="btn ghost edit" data-id="${s.id}">Editar</button>
-          <button class="btn ghost delete" data-id="${s.id}">Eliminar</button>
+          <button class="btn ghost edit" style="display: inline-block;" data-id="${s.id}">Editar</button>
+          <button class="btn ghost delete" style="display: inline-block;" data-id="${s.id}">Eliminar</button>
         </td>`;
       tbody.appendChild(tr);
     });
