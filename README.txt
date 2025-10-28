@@ -1,0 +1,1 @@
+Project Quiz_2_beauty - copy to C:\xampp\htdocs\Quiz_2_beauty. Run backend/init_db.php then frontend/login.html. Creds: admin/adminpass
