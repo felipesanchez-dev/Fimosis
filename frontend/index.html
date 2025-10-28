@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <title>Login - Gestion Pro</title>
-    <link rel="stylesheet" href="../frontend/assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
     <div class="container" style="max-width: 420px; margin-top: 80px">
       <div class="card" style="padding: 28px; text-align: center">
-        <div class="brand"><img src="../frontend/assets/img/logo.svg" /></div>
+        <div class="brand"><img src="assets/img/logo.svg" /></div>
         <h2>Bienvenido</h2>
         <p class="small">Inicia sesión con tu cuenta</p>
         <form id="loginForm" style="margin-top: 12px">
@@ -39,12 +39,10 @@
         document.getElementById("username").value = "admin";
         document.getElementById("password").value = "adminpass";
       });
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", (e) => {
-          e.preventDefault();
-          window.location = "./page/index.html";
-        });
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        window.location = "./page/index.html";
+      });
     </script>
   </body>
 </html>

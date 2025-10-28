@@ -8,52 +8,61 @@
   <body>
     <div class="container">
       <header class="header">
-        <div class="brand"><img src="../assets/img/logo.svg" /></div>
         <div>
           <button class="btn ghost" id="logoutBtn">Cerrar sesión</button>
         </div>
       </header>
-      <div class="card" style="padding: 16px; margin-bottom: 12px">
-        <div style="display: flex; justify-content: space-between; gap: 12px">
-          <input
-            id="search"
-            class="input"
-            placeholder="Buscar por nombre..."
-            style="flex: 1; margin-right: 8px"
-          />
-          <div>
-            <button class="btn" id="newStudentBtn">Nuevo</button
-            ><button class="btn ghost" id="batchDeleteBtn">
-              Eliminar seleccionados</button
-            ><button class="btn ghost" id="refresh">Refrescar</button>
+      <div class="dashboard-content">
+        <div class="card search-section">
+          <input id="search" class="input" placeholder="Buscar por nombre..." />
+          <br />
+          <div class="button-group">
+            <button class="btn" id="newStudentBtn">Nuevo</button>
+            <button class="btn ghost" id="batchDeleteBtn">
+              Eliminar seleccionados
+            </button>
+            <button class="btn ghost" id="refresh">Refrescar</button>
           </div>
         </div>
-      </div>
-      <div class="card">
-        <table class="table" id="studentsTable">
-          <thead>
-            <tr>
-              <th></th>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Nota</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <div style="height: 12px"></div>
-      <div style="display: flex; gap: 10px; align-items: center">
-        <div class="card" style="padding: 12px">
-          <strong>Total:</strong> <span id="count">0</span>
+        <div class="card table-container">
+          <table class="table" id="studentsTable">
+            <thead>
+              <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Nota</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
-        <div class="card" style="padding: 12px">
-          <strong>Promedio:</strong> <span id="avg">0</span>
-        </div>
-        <div class="card" style="padding: 12px">
-          <canvas id="chart" width="300" height="120"></canvas>
+        <div class="stats-section">
+          <div class="card stat-card">
+            <div>
+              <strong>Total de Estudiantes:</strong>
+              <div
+                style="font-size: 24px; font-weight: bold; color: var(--accent)"
+              >
+                <span id="count">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="card stat-card">
+            <div>
+              <strong>Promedio de Notas:</strong>
+              <div
+                style="font-size: 24px; font-weight: bold; color: var(--accent)"
+              >
+                <span id="avg">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="card stat-card">
+            <canvas id="chart"></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -86,6 +95,7 @@
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../assets/js/app.js"></script>
   </body>
 </html>

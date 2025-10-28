@@ -2,7 +2,7 @@
 $host = '127.0.0.1';
 $user = 'root';
 $pass = '';
-$dbname = 'gestion_academica';
+$dbname = 'code';
 try {
     $pdo = new PDO("mysql:host=$host;charset=utf8mb4", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
