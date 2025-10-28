@@ -1,13 +1,13 @@
 // ✅ Versión funcional completa: guarda, busca por nombre, refresca y elimina seleccionados
 (async function(){
   const URLS = {
-    list: '../backend/students_list.php',
-    search: '../backend/students_search.php',
-    create: '../backend/students_create.php',
-    update: '../backend/students_update.php',
-    delete: '../backend/students_delete.php',
-    batch_delete: '../backend/students_batch_delete.php',
-    logout: '../backend/logout.php'
+    list: '../../server/students/students_list.php',
+    search: '../../server/students/students_search.php',
+    create: '../../server/students/students_create.php',
+    update: '../../server/students/students_update.php',
+    delete: '../../server/students/students_delete.php',
+    batch_delete: '../../server/students/students_batch_delete.php',
+    logout: '../../server/auth/logout.php'
   };
 
   const tbody = document.querySelector('#studentsTable tbody');
@@ -38,6 +38,17 @@
     } catch (e) {
       console.error("Error parseando JSON", e);
       return [];
+    }
+  }
+
+  async function checkSession() {
+    try {
+      const res = await fetch(URLS.list, { credentials: 'include' });
+      if (!res.ok) {
+        window.location = '../index.html';
+      }
+    } catch (e) {
+      window.location = '../index.html';
     }
   }
 
@@ -174,9 +185,10 @@
   // ---- Logout ----
   logoutBtn.addEventListener('click', async () => {
     await fetchJson(URLS.logout, { method: 'POST' });
-    window.location = 'login.html';
+    window.location = 'index.html';
   });
 
   // ---- Cargar al inicio ----
+  await checkSession();
   await load();
 })();
