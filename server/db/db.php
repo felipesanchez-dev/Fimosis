@@ -2,7 +2,7 @@
 $host = '127.0.0.1';
 $user = 'root';
 $pass = '';
-$db   = 'code';
+$db   = 'code'; //nombre de la base de datos
 $charset = 'utf8mb4';
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
