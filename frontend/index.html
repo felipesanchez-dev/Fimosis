@@ -41,19 +41,9 @@
       });
       document
         .getElementById("loginForm")
-        .addEventListener("submit", async (e) => {
+        .addEventListener("submit", (e) => {
           e.preventDefault();
-          const u = document.getElementById("username").value;
-          const p = document.getElementById("password").value;
-          const res = await fetch("../server/auth/auth.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username: u, password: p }),
-            credentials: "include",
-          });
-          const data = await res.json();
-          if (res.ok) window.location = "./page/index.html";
-          else document.getElementById("msg").innerText = data.error || "Error";
+          window.location = "./page/index.html";
         });
     </script>
   </body>

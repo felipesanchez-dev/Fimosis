@@ -42,14 +42,7 @@
   }
 
   async function checkSession() {
-    try {
-      const res = await fetch(URLS.list, { credentials: 'include' });
-      if (!res.ok) {
-        window.location = '../index.html';
-      }
-    } catch (e) {
-      window.location = '../index.html';
-    }
+    // Sesión no verificada, proceder directamente
   }
 
   // ---- Cargar desde BD ----
