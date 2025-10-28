@@ -81,6 +81,157 @@ sequenceDiagram
     Frontend-->>User: Redirigir a dashboard
 ```
 
+## Diagramas Adicionales
+
+### Diagrama de Flujo del Proceso de Login
+
+```mermaid
+flowchart TD
+    A[Usuario accede a login] --> B[Ingresar usuario y contraseña]
+    B --> C[Enviar formulario]
+    C --> D{Validar campos}
+    D -->|Campos vacíos| E[Mostrar error]
+    E --> B
+    D -->|Campos válidos| F[Enviar POST a auth.php]
+    F --> G{Verificar credenciales en BD}
+    G -->|Inválidas| H[Mostrar error 401]
+    H --> B
+    G -->|Válidas| I[Iniciar sesión]
+    I --> J[Redirigir a dashboard]
+```
+
+### Diagrama de Flujo para Operaciones CRUD de Estudiantes
+
+```mermaid
+flowchart TD
+    A[Usuario en dashboard] --> B{Acción}
+    B -->|Crear| C[Mostrar modal nuevo]
+    C --> D[Ingresar datos]
+    D --> E[Enviar POST a create.php]
+    E --> F{Éxito}
+    F -->|Sí| G[Recargar lista]
+    F -->|No| H[Mostrar error]
+    B -->|Leer/Listar| I[Enviar GET a list.php]
+    I --> J[Renderizar tabla]
+    B -->|Buscar| K[Ingresar query]
+    K --> L[Enviar GET a search.php]
+    L --> J
+    B -->|Actualizar| M[Seleccionar estudiante]
+    M --> N[Mostrar modal editar]
+    N --> O[Modificar datos]
+    O --> P[Enviar POST a update.php]
+    P --> F
+    B -->|Eliminar| Q[Seleccionar estudiante]
+    Q --> R{Confirmar eliminación}
+    R -->|Sí| S[Enviar POST a delete.php]
+    S --> F
+    R -->|No| A
+    B -->|Eliminar múltiple| T[Seleccionar checkboxes]
+    T --> U{Confirmar}
+    U -->|Sí| V[Enviar POST a batch_delete.php]
+    V --> F
+    U -->|No| A
+```
+
+### Diagrama de Componentes del Sistema
+
+```mermaid
+graph TB
+    subgraph "Cliente (Browser)"
+        A[HTML/CSS/JS]
+        B[Chart.js]
+    end
+    subgraph "Servidor (XAMPP)"
+        C[Apache]
+        D[PHP]
+        E[MySQL]
+    end
+    A --> C
+    B --> A
+    D --> E
+    C --> D
+```
+
+### Diagrama de Despliegue
+
+```mermaid
+deployment
+    subgraph "Usuario"
+        U[Browser]
+    end
+    subgraph "Servidor Local"
+        S[XAMPP]
+        S --> A[Apache Web Server]
+        S --> P[PHP Interpreter]
+        S --> M[MySQL Database]
+    end
+    U --> A
+    A --> P
+    P --> M
+```
+
+### Diagrama de Secuencia para Crear Estudiante
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant StudentController
+    participant Database
+
+    User->>Frontend: Clic en "Nuevo"
+    Frontend->>Frontend: Mostrar modal
+    User->>Frontend: Ingresar datos
+    User->>Frontend: Clic en "Guardar"
+    Frontend->>StudentController: POST /students_create.php
+    StudentController->>Database: INSERT INTO students
+    Database-->>StudentController: ID generado
+    StudentController-->>Frontend: Respuesta OK
+    Frontend->>Frontend: Ocultar modal
+    Frontend->>StudentController: GET /students_list.php
+    StudentController->>Database: SELECT * FROM students
+    Database-->>StudentController: Lista actualizada
+    StudentController-->>Frontend: JSON lista
+    Frontend->>User: Renderizar tabla actualizada
+```
+
+### Diagrama UML de Paquetes
+
+```mermaid
+classDiagram
+    namespace Frontend {
+        class index.html
+        class page/index.html
+        class assets/css/styles.css
+        class assets/js/app.js
+    }
+    namespace Backend {
+        namespace Auth {
+            class auth.php
+            class logout.php
+        }
+        namespace DB {
+            class db.php
+            class init_db.php
+        }
+        namespace Students {
+            class students_list.php
+            class students_create.php
+            class students_update.php
+            class students_delete.php
+            class students_search.php
+            class students_batch_delete.php
+        }
+    }
+    namespace Database {
+        class code.sql
+        class students
+        class users
+    }
+    Frontend --> Backend
+    Backend --> Database
+```
+
 ## Tecnologías Utilizadas
 
 - **Backend**: PHP 8.0 con PDO para MySQL
